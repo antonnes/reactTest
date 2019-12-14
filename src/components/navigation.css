@@ -1,0 +1,13 @@
+.navigation {
+    background: #00a1ff;
+    color: #fff;
+    padding: 5px 10px;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+}
+.float-right {
+    float: right;
+}

@@ -1,0 +1,13 @@
+.datagrid {
+    width: 100%;
+    border-collapse: collapse;
+}
+.datagrid th {
+    text-align: left;
+}
+.datagrid td {
+    border: 1px solid #ddd;
+}
+.datagrid tbody tr:hover {
+    background: #eee;
+}

@@ -1,0 +1,16 @@
+.popover {
+    position: absolute;
+    background: #fff;
+    display: block;
+    border: 1px solid #ddd;
+}
+.popover div {
+    padding: 5px 10px;
+}
+.popover div:first-child {
+    border-bottom: 1px solid #ddd;
+
+}
+.popover.visible {
+    display: block;
+}

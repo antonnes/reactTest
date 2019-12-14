@@ -1,0 +1,58 @@
+[
+    {
+        "Id": 0,
+        "title": "fugiat anim",
+        "category": "amet",
+        "quantity": 20,
+        "description": "consectetur reprehenderit Lorem sint quis velit non reprehenderit do anim",
+        "creationDate": "2019-04-20T05:33:22 -03:00"
+    },
+    {
+        "Id": 1,
+        "title": "tempor mollit",
+        "category": "aliquip",
+        "quantity": 23,
+        "description": "in aliqua aliquip commodo id est quis eiusmod Lorem esse",
+        "creationDate": "2016-08-11T09:14:45 -03:00"
+    },
+    {
+        "Id": 2,
+        "title": "incididunt culpa",
+        "category": "ex",
+        "quantity": 33,
+        "description": "commodo consequat proident incididunt in adipisicing labore proident est occaecat",
+        "creationDate": "2018-04-17T08:00:30 -03:00"
+    },
+    {
+        "Id": 3,
+        "title": "est exercitation",
+        "category": "ex",
+        "quantity": 30,
+        "description": "dolore aliquip est laborum ad pariatur exercitation minim dolore in",
+        "creationDate": "2016-12-01T10:05:40 -02:00"
+    },
+    {
+        "Id": 4,
+        "title": "elit id",
+        "category": "irure",
+        "quantity": 30,
+        "description": "Lorem nulla non laboris sit magna ea qui cillum ex",
+        "creationDate": "2017-10-17T11:32:23 -03:00"
+    },
+    {
+        "Id": 5,
+        "title": "quis qui",
+        "category": "officia",
+        "quantity": 20,
+        "description": "laborum aliqua ad cupidatat ex dolore ullamco dolore reprehenderit enim",
+        "creationDate": "2014-05-26T05:39:38 -03:00"
+    },
+    {
+        "Id": 6,
+        "title": "proident adipisicing",
+        "category": "ex",
+        "quantity": 38,
+        "description": "cupidatat elit commodo non consectetur irure dolore cupidatat deserunt ea",
+        "creationDate": "2018-02-06T04:32:05 -02:00"
+    }
+]
