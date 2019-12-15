@@ -1,15 +1,15 @@
 import React from 'react';
 import './navigation.css';
-
+import { Link} from 'react-router-dom';
 class Navigation extends React.Component {
    constructor() {
     super();
-    this.navItems = [{title: 'Home', className: ''}, {title: 'Create product', className: 'float-right'}];
+    this.navItems = [{title: 'Home', className: '', linkTo: '/'}, {title: 'Create product', className: 'float-right', linkTo: '/product'}];
   }
     render() {
     return <div className="navigation clearfix">
       {this.navItems.map((value, index) => {
-        return <a href="" title="" className={value.className} key={index}>{value.title}</a>
+        return   <span className={value.className} key={index}><Link to={value.linkTo}>{value.title}</Link></span>
       })}
     </div>;
   }

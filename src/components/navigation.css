@@ -1,13 +1,14 @@
 .navigation {
     background: #00a1ff;
     color: #fff;
-    padding: 5px 10px;
+
 }
-a {
+.navigation a {
     text-decoration: none;
     color: #fff;
     display: inline-block;
+    padding: 10px;
 }
-.float-right {
-    float: right;
+.navigation a:hover {
+    background: #4abcff;
 }

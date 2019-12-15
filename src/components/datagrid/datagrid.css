@@ -4,10 +4,17 @@
 }
 .datagrid th {
     text-align: left;
+    user-select: none;
+    cursor: pointer;
 }
 .datagrid td {
     border: 1px solid #ddd;
 }
 .datagrid tbody tr:hover {
     background: #eee;
+}
+.sort-icon {
+    font-size: 12px;
+    margin-left: 10px;
+    display: inline-block;
 }
