@@ -8,9 +8,9 @@ import Popover from '../popover/popover';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEllipsisV, faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faSort, faSortUp, faSortDown, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faEllipsisV, faSort, faSortUp, faSortDown);
+library.add(faEllipsisV, faSort, faSortUp, faSortDown, faTrashAlt);
 
 Modal.setAppElement('#root');
 
@@ -18,11 +18,10 @@ class Datagrid extends React.Component {
 
   constructor() {
     super();
+   
     this.state = {
-      activeIndex: null,
-      activeSortField: null,
-      sortOrder: null,
       showModal: false,
+      indexToDelete: null,
       fields: {
           Id: null,
           title: null,
@@ -31,30 +30,23 @@ class Datagrid extends React.Component {
           description: null,
           createdDate: null
       },
-      products: Data.map((product,index) => {
-          product.index = index;
+      products: Data.map((product) => {
+          //product.createdDate = new Intl.DateTimeFormat('en-US').format(new Date(product.createdDate)).join(" - ");
           return product;
       })
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
-  handleOpenModal () {
-    this.setState({ showModal: true });
+  componentDidMount () {
+    const products = this.props.products;
+    console.log(this.props);
+  }
+  handleOpenModal (index) {
+    this.setState({ showModal: true, indexToDelete: index });
   }  
   handleCloseModal () {
-    this.setState({ showModal: false });
-  }
-  test(index) {
-    this.setState({activeIndex: index});
-  }
-  sort(field) {
-    let order = this.state.fields[field] == null || this.state.fields[field] == 'DESC' ? 'ASC' : 'DESC'; 
-    this.setState({
-        fields: {
-            [field]: order
-        }
-    });
+    this.setState({ showModal: false, indexToDelete: null });
   }
   handleOutsideClick(e) {
     // ignore clicks on the component itself
@@ -64,15 +56,26 @@ class Datagrid extends React.Component {
     
     this.handleClick();
   }
-  deleteProduct(index) {
-      console.log(index);
+  deleteProduct() {
+      console.log(this.state.indexToDelete);
       let products = [...this.state.products];
-      products.splice(index,1);
+      products.splice(this.state.indexToDelete,1);
       this.setState({products: products});
       this.handleCloseModal();
   }
+  filter(string) {
+      let result = this.state.products.filter(product => product.title.includes('tempor'));
+      this.setState({
+        products: result
+    });
+  }
   render() {
-    return <table className="datagrid">
+    return <React.Fragment>
+    <div className="control-panel">        
+        <input type="text"/>
+        <button className="btn-submit" onClick={() => {this.filter()}}>Search</button>        
+    </div>
+    <table className="datagrid">
         <thead>
             <tr>
                 <th>#</th>
@@ -114,46 +117,40 @@ class Datagrid extends React.Component {
             </tr>
         </thead>
         <tbody>
-            {this.state.products.map((product) => {
+            {this.state.products.map((product, index) => {
                 return <tr key={product.Id}>
                 <td>{product.Id} </td>
                 <td>{product.title}</td>
-                <td>{product.category}</td>
-                <td>{product.quantity}</td>
+                <td className="category-column">{product.category}</td>
+                <td className="quantity-column">{product.quantity}</td>
                 <td>{product.description}</td>
                 <td>{product.creationDate}</td>
                 <td>
-                    <a href="" title="">Edit</a> | <a href="javascript:void(0)" title="" onClick={this.handleOpenModal}>Delete</a> 
-                    <Modal 
-                    isOpen={this.state.showModal}
-                    contentLabel="onRequestClose Example"
-                    onRequestClose={this.handleCloseModal}
-                    shouldCloseOnOverlayClick={true}
-                    className="Modal"
-                    overlayClassName="Overlay"
-                    >
-                    <div className="modal-content">
-                        <p>Are you sure you want to delete this?</p>
-                    </div>
-                    <div className="modal-footer">
-                       <div className="float-right">
-                            
-                            <button className="btn-submit danger" onClick={() => {this.deleteProduct(product.index)}}>Ok</button>
-                            <button className="btn-cancel" onClick={this.handleCloseModal}>Cancel</button>
-                       </div>
-                    </div>
-                    </Modal>
-                    {/* <span className='icon' onClick={() => {this.test(index)}}>
-                        <FontAwesomeIcon icon="ellipsis-v"/>
-                    </span>
-                    {this.state.activeIndex == index &&  <Popover />} */}
-                   
+                    <span className="btn-delete" onClick={() => this.handleOpenModal(index)}><FontAwesomeIcon icon="trash-alt"/></span>                    
                 </td>
             </tr>
-            })}
-            
+            })}            
         </tbody>
     </table>
+    <Modal 
+        isOpen={this.state.showModal}
+        contentLabel="onRequestClose Example"
+        onRequestClose={this.handleCloseModal}
+        shouldCloseOnOverlayClick={true}
+        className="Modal"
+        overlayClassName="Overlay"
+        >
+        <div className="modal-content">
+            <p>Are you sure you want to delete this?</p>
+        </div>
+        <div className="modal-footer">
+            <div className="float-right">                            
+                <button className="btn-submit danger" onClick={() => {this.deleteProduct()}}>Ok</button>
+                <button className="btn-cancel" onClick={this.handleCloseModal}>Cancel</button>
+            </div>
+        </div>
+    </Modal>
+    </React.Fragment>
   }
 }
 

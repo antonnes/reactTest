@@ -1,3 +1,6 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 .content {
   max-width: 1080px;
   margin: 35px auto;

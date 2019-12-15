@@ -6,9 +6,24 @@
     text-align: left;
     user-select: none;
     cursor: pointer;
+    font-size: 15px;
+    color: #333;
+    padding: 0px 5px 5px;
+}
+.category-column {
+    width: 110px;
+}
+.quantity-column {
+    width: 110px;
 }
 .datagrid td {
     border: 1px solid #ddd;
+    padding: 0px 10px;
+    font-size: 15px;
+    color: #333;
+}
+.datagrid td:first-child {
+    width: 10px;
 }
 .datagrid tbody tr:hover {
     background: #eee;
@@ -17,4 +32,26 @@
     font-size: 12px;
     margin-left: 10px;
     display: inline-block;
+}
+.btn-delete {
+    background: #ce0000;
+    color: #fff;
+    display: inline-block;
+    padding: 3px 5px;
+    cursor: pointer;
+    user-select: none;
+}
+.control-panel input {
+    width: 70%;
+    float: left;
+}
+.control-panel button {
+    width: 30%;
+    float: right;
+}
+.control-panel::after {
+    content: "";
+    display: table;
+    clear: both;
+    margin-bottom: 25px;
 }
