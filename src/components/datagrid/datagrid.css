@@ -42,16 +42,39 @@
     user-select: none;
 }
 .control-panel input {
-    width: 70%;
-    float: left;
+    padding-left: 27px;
+    padding-right: 27px;
 }
 .control-panel button {
     width: 30%;
     float: right;
 }
-.control-panel::after {
-    content: "";
-    display: table;
-    clear: both;
+.search-box {
+    position: relative;
+    width: 70%;
+    float: left;
+}
+.search-box .icon {
+    position: absolute;
+    top: 9px;
+    padding: 0px;
+    color: #636363;
+}
+.control-panel .icon {
+    position: absolute;
+}
+.control-panel .icon.search {
+    left: 7px;
+}
+.control-panel .icon.clear {
+    right: 7px;
+}
+.control-panel {
     margin-bottom: 25px;
+}
+.search-options {
+    margin-top: 10px;
+}
+.search-options label {
+    margin-right: 10px;
 }

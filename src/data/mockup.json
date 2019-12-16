@@ -5,7 +5,7 @@
         "category": "Pants",
         "quantity": 20,
         "description": "consectetur reprehenderit Lorem sint quis velit non reprehenderit do anim",
-        "creationDate": "2019-04-20T05:33:22 -03:00"
+        "creationDate": "2019-11-30T11:06:00.000Z"
     },
     {
         "Id": 1,
@@ -13,7 +13,7 @@
         "category": "Shoes",
         "quantity": 23,
         "description": "in aliqua aliquip commodo id est quis eiusmod Lorem esse",
-        "creationDate": "2016-08-11T09:14:45 -03:00"
+        "creationDate": "2017-02-11T07:12:00.000Z"
     },
     {
         "Id": 2,
@@ -21,7 +21,7 @@
         "category": "T-shirts",
         "quantity": 33,
         "description": "commodo consequat proident incididunt in adipisicing labore proident est occaecat",
-        "creationDate": "2018-04-17T08:00:30 -03:00"
+        "creationDate": "2013-10-16T00:00:00.000Z"
     },
     {
         "Id": 3,
@@ -29,7 +29,7 @@
         "category": "Food",
         "quantity": 30,
         "description": "dolore aliquip est laborum ad pariatur exercitation minim dolore in",
-        "creationDate": "2016-12-01T10:05:40 -02:00"
+        "creationDate": "2016-12-07T01:11:00.000Z"
     },
     {
         "Id": 4,
@@ -37,7 +37,7 @@
         "category": "Phones",
         "quantity": 30,
         "description": "Lorem nulla non laboris sit magna ea qui cillum ex",
-        "creationDate": "2017-10-17T11:32:23 -03:00"
+        "creationDate": "2019-06-01T00:05:00.000Z"
     },
     {
         "Id": 5,
@@ -45,7 +45,7 @@
         "category": "Electronics",
         "quantity": 20,
         "description": "laborum aliqua ad cupidatat ex dolore ullamco dolore reprehenderit enim",
-        "creationDate": "2014-05-26T05:39:38 -03:00"
+        "creationDate": "2015-04-22T09:30:00.000Z"
     },
     {
         "Id": 6,
@@ -53,6 +53,6 @@
         "category": "Beverages",
         "quantity": 38,
         "description": "cupidatat elit commodo non consectetur irure dolore cupidatat deserunt ea",
-        "creationDate": "2018-02-06T04:32:05 -02:00"
+        "creationDate": "2014-11-12T00:09:00.000Z"
     }
 ]

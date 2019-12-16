@@ -51,7 +51,7 @@ button.btn-submit.danger {
 button.btn-cancel {
   background: #ddd;
 }
-input,
+input:not([type="checkbox"]),
 select,
 textarea {
   width: 100%;
@@ -66,11 +66,19 @@ textarea {
 input:focus {
   outline: none;
 }
+.form-group {
+  margin-bottom: 15px;
+}
 label {
+  user-select: none;
+}
+.form-group label {
   width: 100%;
   margin-bottom: 3px;
   display: inline-block;
 }
-.form-group {
-  margin-bottom: 15px;
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }
