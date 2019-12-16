@@ -59,7 +59,7 @@ class Datagrid extends React.Component {
             let result = this.state.products.filter(product => {
                 let searchOptions = {title: this.state.searchInTitle, description: this.state.searchInDescription, category: this.state.searchInCategory};
                 for (let index in searchOptions) {
-                    if(product[index].includes(searchString)) {
+                    if(product[index].toLowerCase().includes(searchString)) {
                         return product;
                     }                    
                 }
