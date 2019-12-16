@@ -4,7 +4,7 @@ import { Link} from 'react-router-dom';
 class Navigation extends React.Component {
    constructor() {
     super();
-    this.navItems = [{title: 'Home', className: '', linkTo: '/'}, {title: 'Create product', className: 'float-right', linkTo: '/product'}];
+    this.navItems = [{title: 'Home', className: '', linkTo: '/'}, {title: 'Create product', className: 'float-right', linkTo: '/create-product'}];
   }
     render() {
     return <div className="navigation clearfix">

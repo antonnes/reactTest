@@ -1,47 +1,53 @@
 import React from 'react';
-import './product.css';
+import './createProduct.css';
 import Data from '../../data/mockup.json';
 
-class Product extends React.Component {
+class CreateProduct extends React.Component {
     constructor() {
         super();
         this.state = {
-            product: {
+            formControls: {
                 title: '',
                 category: '',
                 quantity: '',
-                creationDate: '',
                 description: '',
-            }
+            },
+            hasErrors: false,
+            products: []
         };
         this.changeHandler = this.changeHandler.bind(this);
-        this.EditProduct = this.EditProduct.bind(this);      
-
+        this.createProduct = this.createProduct.bind(this);      
     }
     componentDidMount () {
-        this.setState({product: this.props.location.state.product});
+        const products = this.props.products;
+        this.setState({products: products})
     }
 
     changeHandler(key) {
         return function (e) {
-            var state = {
-                product:{}
-            };
-            state.product[key] = e.target.value;
+            var state = {};
+            state[key] = e.target.value;
             this.setState(state);
         }.bind(this);
 
     }
 
-    EditProduct(event) {
+    createProduct(event) {
         event.preventDefault();
 
-        let product = this.state.product;
+        let product = {
+            Id: this.state.products.length+1,
+            title: this.state.title,
+            category: this.state.category,
+            quantity: this.state.quantity,
+            description: this.state.description,
+            creationDate: new Date().toString()
+        }
        
         if(this.checkAllRequired(product)) {
             this.setState({hasErrors: true});
         } else {
-            this.props.EditProduct(product);
+            this.props.addProduct(product);
             this.setState({hasErrors: false});
             this.props.history.push('/');
         }
@@ -57,15 +63,15 @@ class Product extends React.Component {
     }
     render() {
     return <div>
-        <h3>Edit product</h3>
-        <form onSubmit={this.EditProduct}>
+        <h3>Create product</h3>
+        <form onSubmit={this.createProduct}>
             <div className="form-group">
                 <label>Title</label>
-                <input type="text" value={this.state.product.title} onChange={this.changeHandler('title')} />
+                <input type="text"  onChange={this.changeHandler('title')} />                
             </div>
             <div className="form-group">
                 <label>Category</label>
-                <select name="" id="" value={this.state.product.category} onChange={this.changeHandler('category')}>
+                <select name="" id="" onChange={this.changeHandler('category')}>
                     <option value="">Choose category</option>
                     {Data.map((product, index) => {
                         return <option key={index}>{product.category}</option>                 
@@ -74,15 +80,11 @@ class Product extends React.Component {
             </div>
             <div className="form-group">
                 <label>Quantity</label>
-                <input type="number" value={this.state.product.quantity} onChange={this.changeHandler('quantity')} />
-            </div>
-            <div className="form-group">
-                <label>Creation Date</label>
-                <input type="text" value={this.state.product.creationDate} disabled />
+                <input type="number"  onChange={this.changeHandler('quantity')} />
             </div>
             <div className="form-group">
                 <label>Description</label>
-                <textarea name="" id="" cols="30" rows="5" value={this.state.product.description} onChange={this.changeHandler('description')} ></textarea>
+                <textarea name="" id="" cols="30" rows="5"  onChange={this.changeHandler('description')} ></textarea>
             </div>
             <div className="form-group">
                 {this.state.hasErrors && <span className="error">Please fill all required fields</span>}
@@ -95,4 +97,4 @@ class Product extends React.Component {
     }
 }
 
-export default Product;
+export default CreateProduct;

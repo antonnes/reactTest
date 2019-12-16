@@ -4,10 +4,10 @@ import './App.css';
 import Datagrid from './components/datagrid/datagrid';
 
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-        <Datagrid/>
+        <Datagrid products={props.products} editProduct={props.editProduct}/>
     </div>
   );
 }

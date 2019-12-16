@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './datagrid.css';
-import Data from '../../data/mockup.json';
 
 // Plugins
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEllipsisV, faSort, faSortUp, faSortDown, faTrashAlt, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Link} from 'react-router-dom';
 
 library.add(faEllipsisV, faSort, faSortUp, faSortDown, faTrashAlt, faTimes, faSearch);
 
@@ -15,10 +15,9 @@ Modal.setAppElement('#root');
 
 class Datagrid extends React.Component {
 
-    constructor() {
-        super();
-        const products = Data.map((product) => {
-            product.creationDate = this.FormatDate(product.creationDate);
+    constructor(props) {
+        super(props);
+        const products = props.products.map((product) => {
             return product;
         });
         this.state = {
@@ -39,7 +38,6 @@ class Datagrid extends React.Component {
     }
     componentDidMount () {
         const products = this.props.products;
-        console.log(this.props);
     }
     OpenModal (index) {
         this.setState({ showModal: true, indexToDelete: index });
@@ -174,11 +172,17 @@ class Datagrid extends React.Component {
             {this.state.filteredProducts.map((product, index) => {
                 return <tr key={product.Id}>
                 <td>{product.Id} </td>
-                <td>{product.title}</td>
+                <td>
+                    <Link to={{
+                    pathname: `/product/${product.Id}`,
+                    state: {product: product}
+                    }}>{product.title}</Link>
+
+                </td>
                 <td className="category-column">{product.category}</td>
                 <td className="quantity-column">{product.quantity}</td>
                 <td>{product.description}</td>
-                <td>{product.creationDate}</td>
+                <td>{this.FormatDate(product.creationDate)}</td>
                 <td>
                     <span className="btn-delete" onClick={() => this.OpenModal(index)}><FontAwesomeIcon icon="trash-alt"/></span>                    
                 </td>
