@@ -41,7 +41,7 @@ class Product extends React.Component {
         if(this.checkAllRequired(product)) {
             this.setState({hasErrors: true});
         } else {
-            this.props.EditProduct(product);
+            //this.props.editProduct(product);
             this.setState({hasErrors: false});
             this.props.history.push('/');
         }
@@ -84,9 +84,9 @@ class Product extends React.Component {
                 <label>Description</label>
                 <textarea name="" id="" cols="30" rows="5" value={this.state.product.description} onChange={this.changeHandler('description')} ></textarea>
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
                 {this.state.hasErrors && <span className="error">Please fill all required fields</span>}
-            </div>
+            </div> */}
             <div>
                 <button type="submit" className="btn-submit">Save</button>
             </div>
