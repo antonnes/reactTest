@@ -1,10 +1,11 @@
 import React from 'react';
 import './product.css';
 import Data from '../../data/mockup.json';
+import { connect } from 'react-redux';
 
 class Product extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             product: {
                 title: '',
@@ -14,18 +15,19 @@ class Product extends React.Component {
                 description: '',
             }
         };
+        console.log(this.props);
         this.changeHandler = this.changeHandler.bind(this);
         this.EditProduct = this.EditProduct.bind(this);      
-
+        console.log(this.props);
     }
     componentDidMount () {
-        this.setState({product: this.props.location.state.product});
+       this.setState({product: this.props.product});
     }
 
     changeHandler(key) {
         return function (e) {
             var state = {
-                product:{}
+                product: this.props.product
             };
             state.product[key] = e.target.value;
             this.setState(state);
@@ -43,6 +45,7 @@ class Product extends React.Component {
         } else {
             //this.props.editProduct(product);
             this.setState({hasErrors: false});
+            this.props.editProduct(product);
             this.props.history.push('/');
         }
     }   
@@ -91,8 +94,29 @@ class Product extends React.Component {
                 <button type="submit" className="btn-submit">Save</button>
             </div>
         </form>
+
     </div>;
     }
 }
 
-export default Product;
+const mapStateToProps = (state, ownProps) => {
+    let id = ownProps.match.params.id;
+    console.log(id);
+    return {
+        product: state.products.find(prod => {
+            return prod.Id == id;
+        })
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        editProduct: (product) => {
+            dispatch({
+                type: 'EDIT_PRODUCT', product: product
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
