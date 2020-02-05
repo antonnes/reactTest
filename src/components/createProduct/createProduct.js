@@ -1,6 +1,7 @@
 import React from 'react';
 import './createProduct.css';
 import Data from '../../data/mockup.json';
+import { connect } from 'react-redux';
 
 class CreateProduct extends React.Component {
     constructor() {
@@ -12,8 +13,7 @@ class CreateProduct extends React.Component {
                 quantity: '',
                 description: '',
             },
-            hasErrors: false,
-            products: []
+            hasErrors: false
         };
         this.changeHandler = this.changeHandler.bind(this);
         this.createProduct = this.createProduct.bind(this);      
@@ -47,7 +47,7 @@ class CreateProduct extends React.Component {
         if(this.checkAllRequired(product)) {
             this.setState({hasErrors: true});
         } else {
-            this.props.addProduct(product);
+            this.props.insertProduct(product);
             this.setState({hasErrors: false});
             this.props.history.push('/');
         }
@@ -97,4 +97,20 @@ class CreateProduct extends React.Component {
     }
 }
 
-export default CreateProduct;
+const mapStateToProps = (state) => {
+    return {
+        products: state.products
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        insertProduct: (product) => {
+            dispatch({
+                type: 'CREATE_PRODUCT', prod: product
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProduct);

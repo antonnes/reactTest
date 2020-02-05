@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEllipsisV, faSort, faSortUp, faSortDown, faTrashAlt, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 library.add(faEllipsisV, faSort, faSortUp, faSortDown, faTrashAlt, faTimes, faSearch);
 
@@ -20,6 +21,7 @@ class Datagrid extends React.Component {
         const products = props.products.map((product) => {
             return product;
         });
+        console.log(props);
         this.state = {
             showModal: false,
             indexToDelete: null,
@@ -48,8 +50,9 @@ class Datagrid extends React.Component {
     DeleteProduct() {
         let products = [...this.state.products];
         let filteredProducts = [...this.state.filteredProducts];
-        products.splice(this.state.indexToDelete,1);
-        filteredProducts.splice(this.state.indexToDelete,1);
+        //products.splice(this.state.indexToDelete,1);
+        this.props.deleteProduct(this.state.indexToDelete);
+        //filteredProducts.splice(this.state.indexToDelete,1);
         this.setState({products: products, filteredProducts: filteredProducts});
         this.CloseModal();
     }
@@ -108,6 +111,7 @@ class Datagrid extends React.Component {
     <div className="control-panel">        
         <div className="clearfix">
             <div className="search-box">
+                {this.props.isLogged}
                 <span className="icon search">
                     <FontAwesomeIcon icon="search"/>
                 </span>
@@ -169,7 +173,7 @@ class Datagrid extends React.Component {
             </tr>
         </thead>
         <tbody>
-            {this.state.filteredProducts.map((product, index) => {
+            {this.props.products.map((product, index) => {
                 return <tr key={product.Id}>
                 <td>{product.Id} </td>
                 <td>
@@ -212,4 +216,21 @@ class Datagrid extends React.Component {
   }
 }
 
-export default Datagrid;
+const mapStateToProps = (state) => {
+    return {
+        isLogged: state.userLogged,
+        products: state.products
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteProduct: (index) => {
+            dispatch({
+                type: 'DELETE_PRODUCT', index: index
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Datagrid);

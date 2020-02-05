@@ -7,7 +7,7 @@ import Datagrid from './components/datagrid/datagrid';
 function App(props) {
   return (
     <div className="App">
-        <Datagrid products={props.products} editProduct={props.editProduct}/>
+        <Datagrid editProduct={props.editProduct}/>
     </div>
   );
 }
